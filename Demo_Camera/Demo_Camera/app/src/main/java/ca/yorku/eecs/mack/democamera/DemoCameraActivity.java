@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -246,8 +248,8 @@ public class DemoCameraActivity extends Activity implements OnClickListener, OnT
     private static final int VIDEO_VIEWER_MODE = 400;
 
     Uri fileUri;
-    Button imageCameraButton, videoCameraButton;
-    Button imagePrevButton, imageNextButton, videoPrevButton, videoNextButton;
+    ImageButton imageCameraButton, videoCameraButton, imagePrevButton, imageNextButton, videoPrevButton, videoNextButton;
+    //Button imagePrevButton, imageNextButton, videoPrevButton, videoNextButton;
     ImageView imageView;
     VideoView videoView;
     File mediaStorageDirectory;
@@ -296,14 +298,14 @@ public class DemoCameraActivity extends Activity implements OnClickListener, OnT
             getActionBar().hide();
 
         // get references to UI widgets
-        imageCameraButton = (Button)findViewById(R.id.button1);
-        videoCameraButton = (Button)findViewById(R.id.button2);
+        imageCameraButton = (ImageButton)findViewById(R.id.button1);
+        videoCameraButton = (ImageButton)findViewById(R.id.button2);
         imageView = (ImageView)findViewById(R.id.imageView1);
         videoView = (VideoView)findViewById(R.id.videoView1);
-        imagePrevButton = (Button)findViewById(R.id.button1a);
-        imageNextButton = (Button)findViewById(R.id.button1b);
-        videoPrevButton = (Button)findViewById(R.id.button2a);
-        videoNextButton = (Button)findViewById(R.id.button2b);
+        imagePrevButton = (ImageButton) findViewById(R.id.button1a);
+        imageNextButton = (ImageButton) findViewById(R.id.button1b);
+        videoPrevButton = (ImageButton) findViewById(R.id.button2a);
+        videoNextButton = (ImageButton) findViewById(R.id.button2b);
         imageCountView = (TextView)findViewById(R.id.imageCount);
         videoCountView = (TextView)findViewById(R.id.videoCount);
         statusTextView = (TextView)findViewById(R.id.indexandcount);
@@ -332,10 +334,10 @@ public class DemoCameraActivity extends Activity implements OnClickListener, OnT
         imageFilenames = mediaStorageDirectory.list(new MyFilenameFilter(".jpg"));
         videoFilenames = mediaStorageDirectory.list(new MyFilenameFilter(".mp4"));
 
-		/*
+        /*
          * Sort the arrays into chronological order. Note: This only works because the date and time
-		 * of creation are embedded in the filenames.
-		 */
+         * of creation are embedded in the filenames.
+         */
         Arrays.sort(imageFilenames);
         Arrays.sort(videoFilenames);
 
@@ -521,17 +523,17 @@ public class DemoCameraActivity extends Activity implements OnClickListener, OnT
             {
                 /*
                  * The following line of commented-out code is from the Android API Guide for
-				 * "Camera". However, this line of code causes the app to crash with a null pointer
-				 * exception. The problem is that the Intent passed to onActivityResult is null.
-				 * After some digging, I came across the following explanation in StackOverflow:
-				 *
-				 * "The default Android camera application returns a non-null intent only when
-				 * passing back a thumbnail in the returned Intent. If you pass EXTRA_OUTPUT with a
-				 * URL to write to, it will return a null intent and the picture is in the URL that
-				 * you passed in."  (Note: The author meant "URI", not "URL".) See...
-				 *
-				 * http://stackoverflow.com/questions/9890757/android-camera-data-intent-returns-null
-				 */
+                 * "Camera". However, this line of code causes the app to crash with a null pointer
+                 * exception. The problem is that the Intent passed to onActivityResult is null.
+                 * After some digging, I came across the following explanation in StackOverflow:
+                 *
+                 * "The default Android camera application returns a non-null intent only when
+                 * passing back a thumbnail in the returned Intent. If you pass EXTRA_OUTPUT with a
+                 * URL to write to, it will return a null intent and the picture is in the URL that
+                 * you passed in."  (Note: The author meant "URI", not "URL".) See...
+                 *
+                 * http://stackoverflow.com/questions/9890757/android-camera-data-intent-returns-null
+                 */
                 // Toast.makeText(this, "Image saved to:\n" + data.getData(),
                 // Toast.LENGTH_LONG).show();
 
@@ -581,7 +583,7 @@ public class DemoCameraActivity extends Activity implements OnClickListener, OnT
             }
         }
 
-		// we're returning via the Back button in the Navigation Bar. Therefore, the return code is CANCEL
+        // we're returning via the Back button in the Navigation Bar. Therefore, the return code is CANCEL
         else if (requestCode == IMAGE_VIEWER_MODE)
         {
             if (resultCode == Activity.RESULT_OK)

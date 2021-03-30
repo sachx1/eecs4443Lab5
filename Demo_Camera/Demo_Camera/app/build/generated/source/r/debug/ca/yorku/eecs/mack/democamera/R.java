@@ -9,7 +9,12 @@ package ca.yorku.eecs.mack.democamera;
 
 public final class R {
   public static final class drawable {
-    public static final int icon=0x7f010000;
+    public static final int ic_arrow_right=0x7f010000;
+    public static final int ic_camera=0x7f010001;
+    public static final int ic_go_left=0x7f010002;
+    public static final int ic_go_right=0x7f010003;
+    public static final int ic_hd_recording=0x7f010004;
+    public static final int icon=0x7f010005;
   }
   public static final class id {
     public static final int button1=0x7f020000;

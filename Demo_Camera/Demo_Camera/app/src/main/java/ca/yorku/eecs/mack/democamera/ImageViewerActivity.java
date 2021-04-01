@@ -33,7 +33,7 @@ public class ImageViewerActivity extends Activity implements OnTouchListener
 
     String directory; // directory containing the images
     String[] filenames; // array of all JPG files in the directory
-    String path2;
+    String filename;
 
     int index; // image currently displayed
     int displayWidth, displayHeight;
@@ -54,7 +54,7 @@ public class ImageViewerActivity extends Activity implements OnTouchListener
     private final int EMAIL = 1;
     private final int INSTAGRAM = 2;
     String type = "image/*";
-    String mediaPath = Environment.getExternalStorageDirectory() + path2;
+    String mediaPath = Environment.getExternalStorageDirectory() + filename;
 
 
     @Override
@@ -330,7 +330,9 @@ public class ImageViewerActivity extends Activity implements OnTouchListener
                 break;
 
             case INSTAGRAM:
-                path2 = "file://" + directory + File.separator + filenames[index];
+                String path2 = "file://" + directory + File.separator + filenames[index];
+                //String filename = filenames[index];
+                filename = filenames[index];
                 Intent share = new Intent(Intent.ACTION_SEND);
                 share.setType(type);
                 File media = new File(mediaPath);
@@ -340,6 +342,7 @@ public class ImageViewerActivity extends Activity implements OnTouchListener
 
                 // Broadcast the Intent.
                 startActivity(Intent.createChooser(share, "Share to"));
+                break;
 
         }
         return true;

@@ -1,12 +1,12 @@
 package ca.yorku.eecs.mack.democamera;
 
 import android.app.Activity;
-import android.app.DialogFragment;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -24,7 +24,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-public class ImageViewerActivity extends Activity implements OnTouchListener, DeleteAlertDialog.DeleteAlertListener
+public class ImageViewerActivity extends Activity implements OnTouchListener
 {
     RelativeLayout container; // parent view (holds the image view)
     ImageView imageView; // holds the JPG file
@@ -33,6 +33,7 @@ public class ImageViewerActivity extends Activity implements OnTouchListener, De
 
     String directory; // directory containing the images
     String[] filenames; // array of all JPG files in the directory
+    String path2;
 
     int index; // image currently displayed
     int displayWidth, displayHeight;
@@ -51,7 +52,10 @@ public class ImageViewerActivity extends Activity implements OnTouchListener, De
     private GestureDetector gestureDetector;
     private boolean zoomMode;
     private final int EMAIL = 1;
-    private final int DELETE = 0;
+    private final int INSTAGRAM = 2;
+    String type = "image/*";
+    String mediaPath = Environment.getExternalStorageDirectory() + path2;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -310,6 +314,7 @@ public class ImageViewerActivity extends Activity implements OnTouchListener, De
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         menu.add(EMAIL, EMAIL, EMAIL, R.string.menu_email);
+        menu.add(INSTAGRAM, INSTAGRAM, INSTAGRAM, R.string.menu_instagram);
         return true;
     }
 
@@ -323,31 +328,21 @@ public class ImageViewerActivity extends Activity implements OnTouchListener, De
                 intent.putExtra(Intent.EXTRA_STREAM, Uri.parse(path));
                 startActivity(Intent.createChooser(intent, "Send Email"));
                 break;
-            case DELETE:
-                showDeleteAlertDialog();
-                break;
+
+            case INSTAGRAM:
+                path2 = "file://" + directory + File.separator + filenames[index];
+                Intent share = new Intent(Intent.ACTION_SEND);
+                share.setType(type);
+                File media = new File(mediaPath);
+                Uri uri = Uri.fromFile(media);
+                // Add the URI to the Intent.
+                share.putExtra(Intent.EXTRA_STREAM, uri);
+
+                // Broadcast the Intent.
+                startActivity(Intent.createChooser(share, "Share to"));
+
         }
         return true;
-    }
-
-    public void showDeleteAlertDialog() {
-        DialogFragment dialog = new DeleteAlertDialog();
-        dialog.show(getFragmentManager(), "DeleteAlertDialogFragment");
-    }
-
-    @Override
-    public void onDialogPositiveClick(DialogFragment dialog) {
-        //positive means we want to delete the current image
-        File image = new File(directory + File.separator + filenames[index]);
-        if (image.exists()) {
-            image.delete();
-            finish();
-        }
-    }
-
-    @Override
-    public void onDialogNegativeClick(DialogFragment dialog) {
-        //negative means we do not want to delete the image, ie do nothing
     }
 
     /*

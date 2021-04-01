@@ -22,8 +22,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name="ca.yorku.eecs.mack.democamera.ImageListViewerActivity">
-        </activity>
+        <activity android:name="ca.yorku.eecs.mack.democamera.DirectoryActivity"></activity>
+        <activity android:name="ca.yorku.eecs.mack.democamera.ImageViewerActivity"></activity>
         <activity android:name="ca.yorku.eecs.mack.democamera.VideoViewerActivity">
         </activity>
     </application>

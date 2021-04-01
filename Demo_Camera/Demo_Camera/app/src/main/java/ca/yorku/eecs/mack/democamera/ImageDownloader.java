@@ -64,11 +64,11 @@ class ImageDownloader
     };
     private int displayWidth;
 
-	/*
+    /*
      * Cache-related fields and methods.
-	 * 
-	 * We use a hard and a soft cache. A soft reference cache is too aggressively cleared by the Garbage Collector.
-	 */
+     *
+     * We use a hard and a soft cache. A soft reference cache is too aggressively cleared by the Garbage Collector.
+     */
 
     /**
      * Returns true if the current download has been canceled or if there was no download in progress on this image

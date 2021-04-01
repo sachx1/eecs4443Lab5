@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -15,7 +14,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -246,10 +244,11 @@ public class DemoCameraActivity extends Activity implements OnClickListener, OnT
     private static final int VIDEO_CAMERA_MODE = 200;
     private static final int IMAGE_VIEWER_MODE = 300;
     private static final int VIDEO_VIEWER_MODE = 400;
+    private static final int GRID_VIEWER_MODE = 500;
 
     Uri fileUri;
-    ImageButton imageCameraButton, videoCameraButton, imagePrevButton, imageNextButton, videoPrevButton, videoNextButton;
-    //Button imagePrevButton, imageNextButton, videoPrevButton, videoNextButton;
+    ImageButton imageCameraButton, videoCameraButton;
+    ImageButton imagePrevButton, imageNextButton, videoPrevButton, videoNextButton;
     ImageView imageView;
     VideoView videoView;
     File mediaStorageDirectory;
@@ -302,10 +301,10 @@ public class DemoCameraActivity extends Activity implements OnClickListener, OnT
         videoCameraButton = (ImageButton)findViewById(R.id.button2);
         imageView = (ImageView)findViewById(R.id.imageView1);
         videoView = (VideoView)findViewById(R.id.videoView1);
-        imagePrevButton = (ImageButton) findViewById(R.id.button1a);
-        imageNextButton = (ImageButton) findViewById(R.id.button1b);
-        videoPrevButton = (ImageButton) findViewById(R.id.button2a);
-        videoNextButton = (ImageButton) findViewById(R.id.button2b);
+        imagePrevButton = (ImageButton)findViewById(R.id.button1a);
+        imageNextButton = (ImageButton)findViewById(R.id.button1b);
+        videoPrevButton = (ImageButton)findViewById(R.id.button2a);
+        videoNextButton = (ImageButton)findViewById(R.id.button2b);
         imageCountView = (TextView)findViewById(R.id.imageCount);
         videoCountView = (TextView)findViewById(R.id.videoCount);
         statusTextView = (TextView)findViewById(R.id.indexandcount);
@@ -372,9 +371,9 @@ public class DemoCameraActivity extends Activity implements OnClickListener, OnT
             b.putString(DIRECTORY_KEY, mediaStorageDirectory.toString());
 
             // start image viewer activity
-            Intent i = new Intent(getApplicationContext(), ImageListViewerActivity.class);
+            Intent i = new Intent(getApplicationContext(), DirectoryActivity.class);
             i.putExtras(b);
-            startActivityForResult(i, IMAGE_VIEWER_MODE);
+            startActivityForResult(i, GRID_VIEWER_MODE);
 
         } else if (v == videoView && videoFilenames.length > 0)
         {
@@ -600,6 +599,17 @@ public class DemoCameraActivity extends Activity implements OnClickListener, OnT
             } else
                 Log.i(MYDEBUG, "UNKNOWN RESULT CODE (VIDEO)!");
         }
+        else if (requestCode == GRID_VIEWER_MODE) {
+            imageFilenames = mediaStorageDirectory.list(new MyFilenameFilter(".jpg"));
+            Arrays.sort(imageFilenames);
+
+            imageIdx = imageFilenames.length - 1;
+
+            if (imageFilenames.length == 0) {
+                imageView.setImageBitmap(null);
+            }
+            displayImage();
+        }
     }
 
     /*
@@ -651,4 +661,5 @@ public class DemoCameraActivity extends Activity implements OnClickListener, OnT
             return name.endsWith(extension);
         }
     }
+
 }

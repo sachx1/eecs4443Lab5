@@ -64,6 +64,10 @@
         "source": "C:\\Users\\sachx\\Documents\\EECS4443\\eecs4443Lab5\\Demo_Camera\\Demo_Camera\\app\\src\\main\\res\\drawable-hdpi\\ic_arrow_right.png"
     },
     {
+        "merged": "C:\\Users\\sachx\\Documents\\EECS4443\\eecs4443Lab5\\Demo_Camera\\Demo_Camera\\app\\build\\intermediates\\res\\merged\\debug\\layout_imagegrid.xml.flat",
+        "source": "C:\\Users\\sachx\\Documents\\EECS4443\\eecs4443Lab5\\Demo_Camera\\Demo_Camera\\app\\src\\main\\res\\layout\\imagegrid.xml"
+    },
+    {
         "merged": "C:\\Users\\sachx\\Documents\\EECS4443\\eecs4443Lab5\\Demo_Camera\\Demo_Camera\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_hd_recording.png.flat",
         "source": "C:\\Users\\sachx\\Documents\\EECS4443\\eecs4443Lab5\\Demo_Camera\\Demo_Camera\\app\\src\\main\\res\\drawable-xxhdpi\\ic_hd_recording.png"
     },
@@ -128,6 +132,10 @@
         "source": "C:\\Users\\sachx\\Documents\\EECS4443\\eecs4443Lab5\\Demo_Camera\\Demo_Camera\\app\\src\\main\\res\\layout\\listviewlayout.xml"
     },
     {
+        "merged": "C:\\Users\\sachx\\Documents\\EECS4443\\eecs4443Lab5\\Demo_Camera\\Demo_Camera\\app\\build\\intermediates\\res\\merged\\debug\\layout_imageviewer.xml.flat",
+        "source": "C:\\Users\\sachx\\Documents\\EECS4443\\eecs4443Lab5\\Demo_Camera\\Demo_Camera\\app\\src\\main\\res\\layout\\imageviewer.xml"
+    },
+    {
         "merged": "C:\\Users\\sachx\\Documents\\EECS4443\\eecs4443Lab5\\Demo_Camera\\Demo_Camera\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_hd_recording.png.flat",
         "source": "C:\\Users\\sachx\\Documents\\EECS4443\\eecs4443Lab5\\Demo_Camera\\Demo_Camera\\app\\src\\main\\res\\drawable-mdpi\\ic_hd_recording.png"
     },
@@ -158,6 +166,10 @@
     {
         "merged": "C:\\Users\\sachx\\Documents\\EECS4443\\eecs4443Lab5\\Demo_Camera\\Demo_Camera\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_arrow_right.png.flat",
         "source": "C:\\Users\\sachx\\Documents\\EECS4443\\eecs4443Lab5\\Demo_Camera\\Demo_Camera\\app\\src\\main\\res\\drawable-xxhdpi\\ic_arrow_right.png"
+    },
+    {
+        "merged": "C:\\Users\\sachx\\Documents\\EECS4443\\eecs4443Lab5\\Demo_Camera\\Demo_Camera\\app\\build\\intermediates\\res\\merged\\debug\\layout_gridview.xml.flat",
+        "source": "C:\\Users\\sachx\\Documents\\EECS4443\\eecs4443Lab5\\Demo_Camera\\Demo_Camera\\app\\src\\main\\res\\layout\\gridview.xml"
     },
     {
         "merged": "C:\\Users\\sachx\\Documents\\EECS4443\\eecs4443Lab5\\Demo_Camera\\Demo_Camera\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_icon.png.flat",
